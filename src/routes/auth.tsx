@@ -36,7 +36,7 @@ function AuthPage() {
   const { mode } = Route.useSearch();
   const navigate = useNavigate();
   const { session, role, refresh, loading } = useAuth();
-  const [tab, setTab] = useState<"login" | "register">(mode);
+  const [tab, setTab] = useState<"login" | "register">(mode ?? "login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

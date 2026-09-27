@@ -57,7 +57,7 @@ function ReportPage() {
   const [checking, setChecking] = useState(false);
   const [duplicates, setDuplicates] = useState<NearbyIssue[] | null>(null);
   const [forceSeparate, setForceSeparate] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ title?: string; description?: string; category?: string; location?: string }>({});
 
   function useCurrentLocation() {
     if (!("geolocation" in navigator)) {
@@ -85,7 +85,7 @@ function ReportPage() {
   }
 
   function validate() {
-    const next: Record<string, string> = {};
+    const next: { title?: string; description?: string; category?: string; location?: string } = {};
     if (title.trim().length < 5) next.title = "Give the issue a short, clear title (5+ characters).";
     if (description.trim().length < 15)
       next.description = "Please describe the problem in at least 15 characters.";

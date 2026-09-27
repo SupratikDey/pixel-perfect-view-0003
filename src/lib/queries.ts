@@ -57,7 +57,7 @@ function unwrap<T>({ data, error }: { data: T | null; error: { message: string }
   return data as T;
 }
 
-export function useIssues(options?: { reportedBy?: string; workerId?: string }) {
+export function useIssues(options?: { reportedBy?: string | undefined; workerId?: string | undefined }) {
   return useQuery({
     queryKey: ["issues", options ?? {}],
     queryFn: async () => {
