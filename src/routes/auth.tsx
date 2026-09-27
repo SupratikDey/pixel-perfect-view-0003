@@ -12,8 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { homeForRole, useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    mode: search.mode === "register" ? ("register" as const) : ("login" as const),
+  validateSearch: (search: Record<string, unknown>): { mode?: "login" | "register" } => ({
+    mode: search["mode"] === "register" ? ("register" as const) : ("login" as const),
   }),
   head: () => ({
     meta: [
