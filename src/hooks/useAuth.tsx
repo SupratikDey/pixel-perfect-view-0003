@@ -115,7 +115,7 @@ export function useAuth(): AuthState {
 }
 
 /** Landing route for a role after sign-in. */
-export function homeForRole(role: AppRole | null): string {
+export function homeForRole(role: AppRole | null): "/admin" | "/worker" | "/my-issues" {
   if (role === "ADMIN") return "/admin";
   if (role === "FIELD_WORKER") return "/worker";
   return "/my-issues";
