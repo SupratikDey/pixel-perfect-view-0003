@@ -132,9 +132,9 @@ function Stat({ label, value, pending }: { label: string; value: number; pending
   return (
     <div className="civic-card p-4">
       <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className="mt-1 font-display text-2xl font-semibold">
+      <div className="mt-1 font-display text-2xl font-semibold">
         {pending ? <Skeleton className="h-7 w-10" /> : value}
-      </p>
+      </div>
     </div>
   );
 }

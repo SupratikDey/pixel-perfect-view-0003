@@ -44,7 +44,7 @@ function AuthPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!loading && session) {
+    if (!loading && session && role) {
       navigate({ to: homeForRole(role), replace: true });
     }
   }, [loading, session, role, navigate]);
