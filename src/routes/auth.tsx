@@ -12,8 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { homeForRole, useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    mode: search.mode === "register" ? ("register" as const) : ("login" as const),
+  validateSearch: (search: Record<string, unknown>): { mode?: "login" | "register" } => ({
+    mode: search["mode"] === "register" ? ("register" as const) : ("login" as const),
   }),
   head: () => ({
     meta: [
@@ -36,7 +36,7 @@ function AuthPage() {
   const { mode } = Route.useSearch();
   const navigate = useNavigate();
   const { session, role, refresh, loading } = useAuth();
-  const [tab, setTab] = useState<"login" | "register">(mode);
+  const [tab, setTab] = useState<"login" | "register">(mode ?? "login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +44,7 @@ function AuthPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!loading && session) {
+    if (!loading && session && role) {
       navigate({ to: homeForRole(role), replace: true });
     }
   }, [loading, session, role, navigate]);

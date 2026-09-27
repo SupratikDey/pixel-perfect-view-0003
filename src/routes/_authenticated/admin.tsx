@@ -348,9 +348,9 @@ function Metric({
         <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
         <Icon className="size-4 text-muted-foreground" />
       </div>
-      <p className="mt-1 font-display text-2xl font-semibold">
+      <div className="mt-1 font-display text-2xl font-semibold">
         {pending ? <Skeleton className="h-7 w-12" /> : value}
-      </p>
+      </div>
     </div>
   );
 }

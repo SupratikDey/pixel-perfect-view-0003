@@ -132,9 +132,9 @@ function Stat({ label, value, pending }: { label: string; value: number; pending
   return (
     <div className="civic-card p-4">
       <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className="mt-1 font-display text-2xl font-semibold">
+      <div className="mt-1 font-display text-2xl font-semibold">
         {pending ? <Skeleton className="h-7 w-10" /> : value}
-      </p>
+      </div>
     </div>
   );
 }
@@ -190,7 +190,7 @@ function TaskBody({ issueId, onClose }: { issueId: string; onClose: () => void }
   const [notes, setNotes] = useState("");
   const [before, setBefore] = useState<string | null>(null);
   const [after, setAfter] = useState<string | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ work?: string; time?: string; before?: string; after?: string }>({});
 
   if (isPending || !data || !user) return <Skeleton className="h-64 w-full" />;
 
@@ -209,7 +209,7 @@ function TaskBody({ issueId, onClose }: { issueId: string; onClose: () => void }
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const next: Record<string, string> = {};
+    const next: { work?: string; time?: string; before?: string; after?: string } = {};
     const minutes = Number(timeSpent);
     if (workDescription.trim().length < 15)
       next.work = "Describe the work performed in at least 15 characters.";
